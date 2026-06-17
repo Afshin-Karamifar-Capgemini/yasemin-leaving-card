@@ -1,0 +1,232 @@
+:root {
+  --paper: #fffdf6;
+  --paper-edge: #efe9d6;
+  --board: #2f3b46;
+  --board-2: #3a4855;
+  --ink: #2b2b2b;
+  --muted: #6b6b6b;
+  --note-shadow: rgba(40, 40, 40, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, -apple-system, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 20% 0%, var(--board-2), transparent 45%),
+    radial-gradient(circle at 100% 100%, var(--board-2), transparent 40%),
+    var(--board);
+  background-attachment: fixed;
+  padding: clamp(16px, 4vw, 48px);
+  display: flex;
+  justify-content: center;
+}
+
+/* The card itself: a tall sheet of paper that scrolls internally on larger
+   screens and naturally with the page on small ones. */
+.card {
+  width: min(960px, 100%);
+  max-height: calc(100vh - clamp(32px, 8vw, 96px));
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border-radius: 14px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 24px 60px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  position: relative;
+}
+
+.card::before {
+  /* soft paper grain / vignette */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(0, 0, 0, 0.05), transparent 60%);
+  z-index: 2;
+}
+
+.card__header {
+  text-align: center;
+  padding: clamp(24px, 5vw, 44px) 24px 12px;
+  border-bottom: 1px dashed var(--paper-edge);
+  background: linear-gradient(180deg, #fffef9, var(--paper));
+}
+
+.card__eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.card__title {
+  margin: 6px 0 4px;
+  font-family: "Caveat", cursive;
+  font-size: clamp(2.6rem, 8vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1.02;
+  color: #20303f;
+}
+
+.card__subtitle {
+  margin: 0;
+  font-size: clamp(1rem, 2.4vw, 1.2rem);
+  color: var(--muted);
+}
+
+.card__count {
+  margin: 10px 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* Scrolling area holding all the notes, laid out in wonky columns. */
+.notes {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: clamp(18px, 4vw, 36px);
+  column-gap: 18px;
+  columns: 3 240px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.notes::-webkit-scrollbar {
+  width: 12px;
+}
+.notes::-webkit-scrollbar-thumb {
+  background: var(--paper-edge);
+  border-radius: 999px;
+  border: 3px solid var(--paper);
+}
+
+/* A single signature / message. */
+.note {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 18px;
+  padding: 18px 18px 14px;
+  position: relative;
+  background: var(--note-bg, #fff);
+  border-radius: 4px;
+  box-shadow: 0 6px 16px var(--note-shadow);
+  transform: rotate(var(--rotate, 0deg));
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.note:hover {
+  transform: rotate(0deg) translateY(-3px);
+  box-shadow: 0 12px 26px var(--note-shadow);
+  z-index: 3;
+}
+
+/* A scrap of tape across the top of each note. */
+.note__tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 84px;
+  height: 22px;
+  transform: translateX(-50%) rotate(var(--tape-rotate, -3deg));
+  background: rgba(255, 245, 200, 0.55);
+  border-left: 1px dashed rgba(0, 0, 0, 0.08);
+  border-right: 1px dashed rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.note__message {
+  margin: 6px 0 14px;
+  font-family: var(--note-font, "Caveat"), cursive;
+  font-size: var(--note-size, 1.5rem);
+  line-height: 1.32;
+  color: var(--note-ink, #1b1b1b);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.note__sign {
+  display: block;
+  text-align: right;
+  font-family: var(--note-font, "Caveat"), cursive;
+  font-size: calc(var(--note-size, 1.5rem) * 1.05);
+  color: var(--note-ink, #1b1b1b);
+}
+
+.note__sign::before {
+  content: "\2014 "; /* em dash */
+  opacity: 0.6;
+}
+
+.note__role {
+  display: block;
+  text-align: right;
+  margin-top: 2px;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.card__footer {
+  padding: 16px 24px 22px;
+  text-align: center;
+  border-top: 1px dashed var(--paper-edge);
+  background: linear-gradient(0deg, #fffef9, var(--paper));
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.card__footer p {
+  margin: 4px 0;
+}
+
+.card__hint code {
+  background: #f1ecdc;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.82em;
+}
+
+.notes__empty {
+  text-align: center;
+  color: var(--muted);
+  font-family: "Caveat", cursive;
+  font-size: 1.6rem;
+  column-span: all;
+  padding: 40px 0;
+}
+
+@media (max-width: 540px) {
+  .card {
+    max-height: none;
+  }
+  .notes {
+    columns: 1;
+    overflow: visible;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .note,
+  .note:hover {
+    transition: none;
+    transform: none;
+  }
+}

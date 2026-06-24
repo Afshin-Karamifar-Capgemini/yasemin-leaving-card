@@ -26,6 +26,14 @@ window.SIGNATURES = [
     colour: "#ffb703"
   },
   {
+    name: "Afshin",
+    message: "So sad to see our kindest teammate leave Capgemini — someone who genuinely cares about her teammates, who brings such wonderful energy to our calls, and who checked in on me every day during everything happening in Iran. I am so happy for you too, because I know how brilliant you are — I am certain you will get exactly where you want to be, and you will make a wonderful manager. Wishing you all the very best!",
+    role: "Full-Stack guild",
+    font: "Caveat",
+    colour: "#0b6e4f",
+    rotate: -2,
+  },
+  {
     name: "Dane",
     message:
       "All the best with your new role! You will not be able to be replaced here and I am sure the DCX door will always be open.",

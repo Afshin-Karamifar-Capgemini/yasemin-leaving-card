@@ -24,5 +24,13 @@ window.SIGNATURES = [
       "It's been an absolute pleasure working with you Yasemin, continually inspiring us all with your attention to detail and amazing ability to truly understand what we build.\nWishing you every success in the future!",
     font: "Indie Flower",
     colour: "#ffb703"
-  }
+  },
+  {
+    name: "Dane",
+    message:
+      "All the best with your new role! You will not be able to be replaced here and I am sure the DCX door will always be open.",
+    font: "Permanent Marker",
+    colour: "#2a9d8f",
+    size: 1.7,
+  },
 ];

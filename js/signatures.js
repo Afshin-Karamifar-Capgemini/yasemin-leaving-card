@@ -41,4 +41,9 @@ window.SIGNATURES = [
     colour: "#2a9d8f",
     size: 1.7,
   },
+  {
+    name: "Gita xx",
+    message: "Yasemin, Congratulations on your new role! Thank you for everything you've contributed while working with us. It's been a pleasure working with you. I've really appreciated your support and the positive energy you've brought to the team. You'll definitely be missed. Wishing you every success in the next chapter!",
+    font: "Caveat",
+  },
 ];

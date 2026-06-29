@@ -46,4 +46,11 @@ window.SIGNATURES = [
     message: "Yasemin, Congratulations on your new role! Thank you for everything you've contributed while working with us. It's been a pleasure working with you. I've really appreciated your support and the positive energy you've brought to the team. You'll definitely be missed. Wishing you every success in the next chapter!",
     font: "Caveat",
   },
+  {
+    name: "Krishnan",
+    message: "Working with you has been such a great experience, Yasemin!\nYou were always ready to help whenever I was in trouble, and I truly appreciate how you not only helped me but also taught and guided me along the way. I learned a lot from you.\nIt has been a genuinely great experience working with you. Thanks for all the help, knowledge, and positive energy you brought to the team.\nIt won't be the same without you — you'll definitely be missed.\nWishing you lots of success and happiness in what's next. Stay in touch!",
+    font: "Kalam",
+    colour: "#5b2d8e",
+    rotate: 2,
+  },
 ];
